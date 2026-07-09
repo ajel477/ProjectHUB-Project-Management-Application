@@ -10,7 +10,11 @@ import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 import notFound from "./middleware/notFound.js";
 import errorHandler from "./middleware/errorHandler.js";
-const path = require('path')
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -36,9 +40,9 @@ app.use(notFound);
 
 app.use(errorHandler);
 
-app.get("*name", (req, res) => {
-    res.sendfile(path.join(__dirname, '../public/index.html'));
-})
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
