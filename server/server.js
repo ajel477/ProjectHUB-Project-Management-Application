@@ -36,13 +36,13 @@ app.use("/api/projects", projectRoutes);
 app.use("/api", taskRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
 app.use(notFound);
 
 app.use(errorHandler);
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
-});
 
 const PORT = process.env.PORT || 5000;
 
