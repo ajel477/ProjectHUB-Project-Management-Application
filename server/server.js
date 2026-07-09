@@ -10,6 +10,7 @@ import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 import notFound from "./middleware/notFound.js";
 import errorHandler from "./middleware/errorHandler.js";
+const path = require('path')
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(
     })
 );
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use("/api/projects", projectRoutes);
 app.use("/api", taskRoutes);
@@ -33,6 +35,10 @@ app.use("/api/dashboard", dashboardRoutes);
 app.use(notFound);
 
 app.use(errorHandler);
+
+app.get("*name", (req, res) => {
+    res.sendfile(path.join(__dirname, '../public/index.html'));
+})
 
 const PORT = process.env.PORT || 5000;
 
