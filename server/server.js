@@ -36,7 +36,7 @@ app.use("/api/projects", projectRoutes);
 app.use("/api", taskRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
-app.get("/*", (req, res) => {
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
