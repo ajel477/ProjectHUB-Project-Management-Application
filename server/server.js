@@ -41,14 +41,12 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use("/api/projects", projectRoutes);
 app.use("/api", taskRoutes);
 app.use("/api/dashboard", dashboardRoutes);
-
 
 app.use(notFound);
 
