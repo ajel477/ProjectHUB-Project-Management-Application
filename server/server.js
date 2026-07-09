@@ -23,11 +23,23 @@ connectDB();
 const app = express();
 
 
+const app = express();
+
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  "http://localhost:5173",
+].filter(Boolean);
+
 app.use(
-    cors({
-        origin: "http://localhost:5173",
-        credentials: true,
-    })
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      callback(new Error(`CORS policy does not allow access from origin ${origin}`));
+    },
+    credentials: true,
+  })
 );
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
