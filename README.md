@@ -1,4 +1,4 @@
-# ProjectPilot - Project Management Dashboard
+# ProjectHUB - Project Management Dashboard
 
 A full-stack Project Management Dashboard built using the MERN Stack. This application allows users to manage projects and tasks through a clean and responsive interface. It provides complete CRUD operations for projects and tasks, along with a dashboard summarizing project and task statistics.
 
